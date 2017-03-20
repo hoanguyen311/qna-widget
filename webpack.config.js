@@ -24,7 +24,8 @@ module.exports = {
     output: {
         path: `${__dirname}/dist`,
         library: 'QnAWidget',
-        filename: 'qna-widget.js'
+        filename: 'qna-widget.js',
+        publicPath: 'dist'
     },
     module: {
         rules: [
