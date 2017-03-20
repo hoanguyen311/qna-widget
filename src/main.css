@@ -1,0 +1,19 @@
+.pending-questions {
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    background: #FFF;
+    border: 1px solid #666;
+    padding: 20px;
+    font-size: 18px;
+    line-height: 20px;
+    opacity: 0;
+    transition: all .5s;
+}
+.pending-questions_animation-in {
+    opacity: 1;
+    bottom: 100px;
+}
+.pending-questions__total {
+
+}
