@@ -9,6 +9,28 @@
     line-height: 20px;
     opacity: 0;
     transition: all .5s;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 0 rgba(0,0,0,.2);
+}
+.pending-questions:before {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 31px;
+    top: 100%;
+    border: 9px solid;
+    border-color: #666 transparent transparent #666;
+}
+.pending-questions:after {
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 32px;
+    top: 100%;
+    border: 8px solid;
+    border-color: #fff transparent transparent #fff;
 }
 .pending-questions_animation-in {
     opacity: 1;
