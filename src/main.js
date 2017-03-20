@@ -11,6 +11,7 @@ function renderPopup(data) {
         <small>(I am created by Js after AJAX)</small>
     </div>`
 }
+
 function appendPopup(html) {
     const div = document.createElement('div');
     div.innerHTML = html;

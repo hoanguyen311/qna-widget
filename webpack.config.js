@@ -27,22 +27,31 @@ module.exports = {
         filename: 'qna-widget.js'
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: [["env", {
-                        "targets": {
-                            "browsers": ["last 2 versions", "safari >= 7", "ie >= 10"]
-                        }
-                    }]]
+        rules: [
+            {
+                test: /\.js$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [["env", {
+                            "targets": {
+                                "browsers": ["last 2 versions", "safari >= 7", "ie >= 10"]
+                            },
+                            modules: false
+                        }]],
+                    }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', {
+                    loader: 'css-loader',
+                    options: {
+                        minimize: isProduction
+                    }
+                } ]
             }
-        }, {
-            test: /\.css$/,
-            use: [ 'style-loader', 'css-loader' ]
-        }]
+        ]
     },
     plugins: getPlugins(),
     devServer: {
