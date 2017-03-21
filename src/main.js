@@ -1,11 +1,11 @@
 import './main.css';
 
 let _hash = null;
-let _interval = 7000;
+let _intervalDelay = 7000;
 
 function renderPopup(data) {
 
-    return `<div class="pending-questions" id="pending-questions">
+    return `<div class="pending-questions">
         You have total
         <a class="pending-questions__link" target="_blank" href="${data.url}" id="total-pending-question">${data.total}</a>
         pending questions!<br/>
@@ -19,6 +19,7 @@ function appendPopup(html) {
     $prev && $prev.remove();
 
     const div = document.createElement('div');
+    div.setAttribute('id', 'pending-questions');
     div.innerHTML = html;
     document.body.appendChild(div);
 
@@ -41,7 +42,7 @@ export function addHash(hash) {
 }
 
 export function setIntervalTimeout(interval) {
-    _interval = interval;
+    _intervalDelay = interval;
 }
 
 export function init() {
@@ -58,5 +59,5 @@ export function init() {
             .then(renderPopup)
             .then(appendPopup)
             .catch((err) => console.warn(err));
-    }, _interval);
+    }, _intervalDelay);
 }
