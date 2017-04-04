@@ -51,6 +51,10 @@ module.exports = {
                         minimize: isProduction
                     }
                 } ]
+            },
+            {
+                test: /\.png$/,
+                use: 'url-loader'
             }
         ]
     },
