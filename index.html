@@ -5,9 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Check</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #seller-center {
+            width: auto;
+            min-width: 1000px;
+            max-width: 1800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .background {
+            width: 100%;
+            height: auto;
+        }
+        #qa-widget-placeholder {
+            position: absolute;
+            bottom: 4%;
+            right: 1.5%;
+            width: 22%;
+        }
+    </style>
 </head>
 <body>
-<h1>Hi</h1>
+
+<div id="seller-center">
+    <img src="images/background.png" alt="" class="background">
+    <div id="qa-widget-placeholder"></div>
+</div>
 
 <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -16,6 +43,7 @@
 <script type="text/javascript" src="dist/qna-widget.js"></script>
 <script type="text/javascript">
     QnAWidget.addHash('32132323SDFASsdfasdf');
+    QnAWidget.setPlaceholderId('qa-widget-placeholder');
     QnAWidget.init();
 </script>
 </body>

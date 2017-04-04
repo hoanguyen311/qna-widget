@@ -1,41 +1,66 @@
 .pending-questions {
-    position: fixed;
-    bottom: 80px;
-    right: 10px;
-    background: #FFF;
-    border: 1px solid #666;
-    padding: 20px;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 20px;
     opacity: 0;
     transition: all .5s;
     border-radius: 5px;
-    box-shadow: 0 3px 0 0 rgba(0,0,0,.2);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,.2);
+    font-family: Roboto, Helvetica, Tahoma, sans-serif;
+    position: relative;
 }
-.pending-questions:before {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 31px;
-    top: 100%;
-    border: 9px solid;
-    border-color: #666 transparent transparent #666;
-}
-.pending-questions:after {
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 32px;
-    top: 100%;
-    border: 8px solid;
-    border-color: #fff transparent transparent #fff;
+.pending-questions__body {
+    background: #FFF;
+    padding: 20px;
 }
 .pending-questions_animation-in {
     opacity: 1;
-    bottom: 100px;
 }
-.pending-questions__total {
-
+.pending-questions__button {
+    background: #349cb8;
+    width: 100%;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    clear: both;
+    text-align: center;
+    border-radius: 5px;
+    margin: 15px 0px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    color: #ffffff;
+    appearance: none;
+}
+.pending-questions__toggler {
+    position: absolute;
+    right: 15px;
+    width: 35px;
+    height: 20px;
+    background: #FFF;
+    top: -20px;
+    box-shadow: 1px -1px 2px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.pending-questions__toggler-icon {
+    position: relative;
+}
+.pending-questions__toggler:before {
+    content: '';
+    background: url('./arrow.png') no-repeat;
+    width: 20px;
+    height: 18px;
+    display: block;
+    background-size: 100%;
+    background-position: top left;
+    position: relative;
+}
+.pending-questions_collapsed .pending-questions__toggler:before {
+    transform: rotate(180deg);
+    top: 3px;
+}
+.pending-questions_collapsed .pending-questions__body {
+    display: none;
 }
