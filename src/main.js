@@ -1,72 +1,76 @@
 import './main.css';
 
-let _hash = null;
-let _intervalDelay = 7000;
-let _placeholderId = null;
+class QnAWidget {
+    constructor({ hash }) {
+        if (typeof hash !== 'string') {
+            throw new Error('Please addHash([hash])');
+        }
 
-function renderPopup({ url, total }) {
-
-    return `
-    <div class="pending-questions">
-        <div class="pending-questions__toggler">
-            <span class="pending-questions__toggler-icon"></span>
-        </div>
-        <div class="pending-questions__body">
-            You have ${total} questions from customer
-            <a href="${url}" class="pending-questions__button">Answer pending questions</a>
-        </div>
-    </div>`
-}
-
-function appendPopup(html) {
-    const $placeholder = _placeholderId ? document.getElementById(_placeholderId) : document.body;
-    var $prev = document.getElementById('pending-questions');
-    $prev && $prev.remove();
-
-    const div = document.createElement('div');
-    div.setAttribute('id', 'pending-questions');
-    div.innerHTML = html;
-    $placeholder.appendChild(div);
-
-    setTimeout(() => {
-        div.children[0].classList.add('pending-questions_animation-in');
-    }, 200);
-}
-
-function getData() {
-    return fetch(`https://demo8280979.mockable.io/pending-questions?hash=${_hash}`)
-        .then((res) => res.json());
-}
-
-function updatePopup({total}) {
-    document.getElementById('total-pending-question').innerHTML = total;
-}
-
-export function addHash(hash) {
-    _hash = hash;
-}
-
-export function setPlaceholderId(id) {
-    _placeholderId = id;
-}
-
-export function setIntervalTimeout(interval) {
-    _intervalDelay = interval;
-}
-
-export function init() {
-    if (typeof _hash !== 'string') {
-        throw new Error('Please addHash([hash])');
+        this.loadData(hash)
+            .then((data) => this.init(data));
     }
-    getData()
-        .then(renderPopup)
-        .then(appendPopup)
-        .catch((err) => console.warn(err));
+    getTpl() {
+        return ({ link, pendingCount }) => {
+            return `<div class="pending-questions">
+                <div class="pending-questions__toggler"></div>
+                <p class="pending-questions__text">You have ${pendingCount || 0} questions from customer</p>
+                <a href="${link}" target="_blank" class="pending-questions__button">Answer pending questions</a>
+            </div>`
+        }
+    }
+    render(params) {
+        let div = document.createElement('div');
+        div.innerHTML = this.getTpl()(params);
 
-    // setInterval(() => {
-    //     getData()
-    //         .then(renderPopup)
-    //         .then(appendPopup)
-    //         .catch((err) => console.warn(err));
-    // }, _intervalDelay);
+        return div.firstChild;
+    }
+    loadData(hash) {
+        return fetch(`${QnAWidget.url}?hash=${hash}`)
+            .then((res) => res.json());
+    }
+    init(params) {
+        this.$root = this.render(params);
+        document.body.appendChild(this.$root);
+
+        this.bindEvents();
+
+        setTimeout(() => {
+            this.addMod('expanded');
+        }, 200);
+    }
+    bindEvents() {
+        this.$root.addEventListener('click', (e) => {
+            if (!this.hasMod('expanded')) {
+                this.addMod('expanded')
+            }
+        });
+
+        document.querySelector('.pending-questions__toggler').addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (this.hasMod('expanded')) {
+                this.removeMod('expanded')
+            }
+        });
+    }
+    addMod(modeName) {
+        const className = `${this.getBlockName()}_${modeName}`;
+        this.$root.classList.add(className);
+    }
+    removeMod(modeName) {
+        const className = `${this.getBlockName()}_${modeName}`;
+        this.$root.classList.remove(className);
+    }
+    hasMod(modeName) {
+        const className = `${this.getBlockName()}_${modeName}`;
+        return this.$root.classList.contains(className);
+    }
+    getBlockName() {
+        return 'pending-questions';
+    }
+}
+
+QnAWidget.url = 'https://demo8280979.mockable.io/pending-questions';
+
+export function init(hash) {
+    return new QnAWidget({ hash });
 }
