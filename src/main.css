@@ -47,6 +47,9 @@
     appearance: none;
     visibility: hidden;
 }
+.pending-questions__button:hover {
+    text-decoration: none;
+}
 .pending-questions__toggler {
 
     display: none;
