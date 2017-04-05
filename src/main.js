@@ -26,9 +26,8 @@ class QnAWidget {
         return div.firstChild;
     }
     loadData(hash) {
-        // return fetch(`${QnAWidget.url}?hash=${hash}`)
-        //     .then((res) => res.json());
-        return Promise.resolve({ pendingCount: 12, link: 'assdfasd'  })
+        return fetch(`${QnAWidget.url}?hash=${hash}`)
+            .then((res) => res.json());
     }
     init(params) {
         this.$root = this.render(params);
