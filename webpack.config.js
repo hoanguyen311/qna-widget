@@ -37,15 +37,14 @@ module.exports = {
                         presets: [["env", {
                             "targets": {
                                 "browsers": ["last 2 versions", "safari >= 7", "ie >= 10"]
-                            },
-                            modules: false
+                            }
                         }]],
                     }
                 }
             },
             {
                 test: /\.css$/,
-                use: [ 'style-loader', {
+                use: [ 'to-string-loader', {
                     loader: 'css-loader',
                     options: {
                         minimize: isProduction

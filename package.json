@@ -30,6 +30,7 @@
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "devDependencies": {
+    "to-string-loader": "^1.1.5",
     "url-loader": "^0.5.8"
   }
 }
