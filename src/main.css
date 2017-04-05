@@ -46,6 +46,7 @@
     background-color: #ef7026;
     appearance: none;
     visibility: hidden;
+    text-decoration: none;
 }
 .pending-questions__button:hover {
     text-decoration: none;
