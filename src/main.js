@@ -1,12 +1,12 @@
 import styles from './main.css';
 
 class QnAWidget {
-    constructor({ hash }) {
-        if (typeof hash !== 'string') {
-            throw new Error('Please addHash([hash])');
+    constructor({ token }) {
+        if (typeof token !== 'string') {
+            throw new Error('Please provide { token }');
         }
 
-        this.loadData(hash)
+        this.loadData(token)
             .then((data) => this.init(data));
     }
     getTpl() {
@@ -25,8 +25,8 @@ class QnAWidget {
 
         return div.firstChild;
     }
-    loadData(hash) {
-        return fetch(`${QnAWidget.url}?hash=${hash}`)
+    loadData(token) {
+        return fetch(`${QnAWidget.url}?token=${token}`)
             .then((res) => res.json());
     }
     init(params) {
@@ -72,6 +72,6 @@ class QnAWidget {
 
 QnAWidget.url = 'https://demo8280979.mockable.io/pending-questions';
 
-export function init(hash) {
-    return new QnAWidget({ hash });
+export function init(token) {
+    return new QnAWidget({ token });
 }
