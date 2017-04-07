@@ -1,5 +1,5 @@
 import QnAWidget from './libs/QnAWidget';
 
-export function init(token) {
-    return new QnAWidget({ token });
+export function init(params) {
+    return new QnAWidget(params);
 }
