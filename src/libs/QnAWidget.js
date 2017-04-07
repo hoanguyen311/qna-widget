@@ -1,15 +1,28 @@
 import styles from './styles.css';
 import { get } from './utils';
+import { stringify } from 'querystring';
+
+const _DEFAULT_CFG = {
+    token: '',
+    domain: 'https://alice-pdp371.vtdc.lzd.co',
+    language: 'en'
+};
 
 class QnAWidget {
-    constructor({ token }) {
+    constructor(params) {
+        this.config = {
+            ..._DEFAULT_CFG,
+            ...params
+        };
+
+
         this.handleError = this.handleError.bind(this);
 
-        if (typeof token !== 'string') {
+        if (this.config.token === '') {
             this.handleError(new Error('Please provide { token }'));
         }
 
-        this.loadData(token)
+        this.loadData()
             .then(({ success, data }) => {
                 if (!success) {
                     throw new Error('call to ask api did not success');
@@ -38,8 +51,11 @@ class QnAWidget {
 
         return div.firstChild;
     }
-    loadData(token) {
-        return fetch(`${QnAWidget.url}?token=${token}`)
+    loadData() {
+
+        const { domain, ...params } = this.config;
+
+        return fetch(`${domain}/ajax/ask/sellerPendingData/?${stringify(params)}`)
             .then((res) => res.json());
     }
     init(params) {
