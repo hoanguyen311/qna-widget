@@ -59,7 +59,7 @@ class QnAWidget {
             }
         });
 
-        document.querySelector('.pending-questions__toggler').addEventListener('click', (e) => {
+        this.$root.querySelector('.pending-questions__toggler').addEventListener('click', (e) => {
             e.stopPropagation();
             if (this.hasMod('expanded')) {
                 this.removeMod('expanded')
