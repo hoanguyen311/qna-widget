@@ -5,6 +5,7 @@ import { stringify } from 'querystring';
 const _DEFAULT_CFG = {
     token: '',
     domain: 'https://alice-pdp371.vtdc.lzd.co',
+    devMode: false,
     language: 'en'
 };
 
@@ -33,29 +34,49 @@ class QnAWidget {
             })
             .catch(this.handleError)
     }
-    getTpl() {
+    getTpl(translations) {
+        const translate = (key) => {
+            if (translations && translations[key]) {
+                return translations[key];
+            }
+            return key;
+        };
+
         return ({ link, total }) => {
             return `<div class="pending-questions">
                 <style>${styles.toString()}</style>
                 <div class="pending-questions__body">
-                    <p class="pending-questions__text">You have ${total || 0} questions from customers</p>
-                    <a href="${link}" target="_blank" class="pending-questions__button">Answer pending questions</a>
+                    <p class="pending-questions__text">
+                        ${translate('You have %s questions from customers').replace('%s', total)}
+                    </p>
+                    <a href="${link}" target="_blank" class="pending-questions__button">
+                        ${translate('Answer pending questions')}
+                    </a>
                 </div>
                 <div class="pending-questions__toggler"></div>
             </div>`
         }
     }
     render(params) {
+        const { translations, ...viewParams } = params;
         let div = document.createElement('div');
-        div.innerHTML = this.getTpl()(params);
+
+        div.innerHTML = this.getTpl(translations)(viewParams);
 
         return div.firstChild;
     }
     loadData() {
 
-        const { domain, ...params } = this.config;
+        const { devMode, domain, ...urlParams } = this.config;
 
-        return fetch(`${domain}/ajax/ask/sellerPendingData/?${stringify(params)}`)
+        let url = `${domain}/ajax/ask/sellerPendingData/?${stringify(urlParams)}`;
+
+        if (devMode) {
+            url = 'https://demo8280979.mockable.io/pending-questions';
+        }
+
+
+        return fetch(url)
             .then((res) => res.json());
     }
     init(params) {
