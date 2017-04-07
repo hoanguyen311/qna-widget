@@ -24,7 +24,7 @@ class QnAWidget {
             return `<div class="pending-questions">
                 <style>${styles.toString()}</style>
                 <div class="pending-questions__body">
-                    <p class="pending-questions__text">You have ${total || 0} questions from customer</p>
+                    <p class="pending-questions__text">You have ${total || 0} questions from customers</p>
                     <a href="${link}" target="_blank" class="pending-questions__button">Answer pending questions</a>
                 </div>
                 <div class="pending-questions__toggler"></div>
