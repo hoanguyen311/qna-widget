@@ -19,7 +19,7 @@ const getPlugins = () => {
 
 module.exports = {
     context: `${__dirname}/src`,
-    entry: './main.js',
+    entry: './index.js',
     devtool: isProduction ? false : 'cheap-sourcemap',
     output: {
         path: `${__dirname}/dist`,
@@ -36,7 +36,7 @@ module.exports = {
                     options: {
                         presets: [["env", {
                             "targets": {
-                                "browsers": ["last 2 versions", "safari >= 7", "ie >= 10"]
+                                "browsers": ["last 2 versions" ]
                             }
                         }]],
                     }

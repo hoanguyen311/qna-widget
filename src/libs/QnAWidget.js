@@ -1,4 +1,5 @@
-import styles from './main.css';
+import styles from './styles.css';
+import { get } from './utils';
 
 class QnAWidget {
     constructor({ token }) {
@@ -87,6 +88,4 @@ class QnAWidget {
 
 QnAWidget.url = 'https://alice-pdp371.vtdc.lzd.co/ajax/ask/sellerPendingData/';
 
-export function init(token) {
-    return new QnAWidget({ token });
-}
+export default QnAWidget;
