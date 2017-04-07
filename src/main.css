@@ -5,15 +5,20 @@
     border-radius: 5px;
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.24);
     font-family: Helvetica;
-    background-color: #fffceb;
+
     position: fixed;
     right: 20px;
     bottom: -81px;
     border-radius: 3px;
-    padding: 13px 17px;
     box-sizing: border-box;
     cursor: pointer;
     width: 305px;
+}
+.pending-questions__body {
+    position: relative;
+    z-index: 3;
+    background-color: #fffceb;
+    padding: 13px 17px;
 }
 .pending-questions__text {
     font-size: 14px;
@@ -70,6 +75,10 @@
     bottom: 0;
     cursor: default;;
 }
+.pending-questions__body {
+    position: relative;
+    z-index: 3;
+}
 .pending-questions_expanded .pending-questions__button {
     visibility: visible;
 }
@@ -77,12 +86,13 @@
     content: none;
 }
 .pending-questions_expanded .pending-questions__toggler {
+    z-index: 2;
     position: absolute;
     right: 15px;
     width: 35px;
     height: 20px;
     top: -20px;
-    box-shadow: 1px -1px 2px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;

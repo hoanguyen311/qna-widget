@@ -2,20 +2,32 @@ import styles from './main.css';
 
 class QnAWidget {
     constructor({ token }) {
+        this.handleError = this.handleError.bind(this);
+
         if (typeof token !== 'string') {
-            throw new Error('Please provide { token }');
+            this.handleError(new Error('Please provide { token }'));
         }
 
         this.loadData(token)
-            .then((data) => this.init(data));
+            .then(({ success, data }) => {
+                if (!success) {
+                    throw new Error('call to ask api did not success');
+                }
+                if (data.total) {
+                    this.init(data);
+                }
+            })
+            .catch(this.handleError)
     }
     getTpl() {
-        return ({ link, pendingCount }) => {
+        return ({ link, total }) => {
             return `<div class="pending-questions">
                 <style>${styles.toString()}</style>
+                <div class="pending-questions__body">
+                    <p class="pending-questions__text">You have ${total || 0} questions from customer</p>
+                    <a href="${link}" target="_blank" class="pending-questions__button">Answer pending questions</a>
+                </div>
                 <div class="pending-questions__toggler"></div>
-                <p class="pending-questions__text">You have ${pendingCount || 0} questions from customer</p>
-                <a href="${link}" target="_blank" class="pending-questions__button">Answer pending questions</a>
             </div>`
         }
     }
@@ -65,12 +77,15 @@ class QnAWidget {
         const className = `${this.getBlockName()}_${modeName}`;
         return this.$root.classList.contains(className);
     }
+    handleError(err) {
+        console.log(err);
+    }
     getBlockName() {
         return 'pending-questions';
     }
 }
 
-QnAWidget.url = 'https://demo8280979.mockable.io/pending-questions';
+QnAWidget.url = 'https://alice-pdp371.vtdc.lzd.co/ajax/ask/sellerPendingData/';
 
 export function init(token) {
     return new QnAWidget({ token });
