@@ -29,7 +29,7 @@
 }
 .pending-questions__text:after {
     content: '';
-    background: url('./arrow.svg') no-repeat center;
+    background: url(./arrow.svg) no-repeat center;
     width: 12px;
     height: 7px;
     display: inline-block;
@@ -64,7 +64,7 @@
 }
 .pending-questions__toggler:before {
     content: '';
-    background: url('./arrow.svg') no-repeat center;
+    background: url(./arrow.svg) no-repeat center;
     width: 12px;
     height: 7px;
     display: block;
