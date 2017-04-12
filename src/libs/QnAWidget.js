@@ -54,7 +54,7 @@ class QnAWidget {
         const { domain, devMode } = this.config;
 
         if (devMode) {
-            return `${domain}/dist/${fileName}`;
+            return `${domain ? domain + '/' : ''}dist/${fileName}`;
         }
 
         return `${domain}/js/libs/${fileName}`;
