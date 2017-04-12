@@ -3,7 +3,7 @@ import { stringify } from 'querystring';
 
 const _DEFAULT_CFG = {
     token: '',
-    domain: 'https://alice-pdp371.vtdc.lzd.co',
+    domain: '',
     devMode: false,
     language: 'en'
 };
@@ -54,7 +54,7 @@ class QnAWidget {
         const { domain, devMode } = this.config;
 
         if (devMode) {
-            return `dist/${fileName}`;
+            return `${domain}/dist/${fileName}`;
         }
 
         return `${domain}/js/libs/${fileName}`;
