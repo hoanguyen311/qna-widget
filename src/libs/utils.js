@@ -8,3 +8,17 @@ export function get(url) {
         req.send();
     });
 }
+export function addScript(src) {
+    return new Promise((resolve, reject) => {
+        let el = document.createElement('script');
+
+        el.onload = el.onreadystatechange = () => {
+            resolve();
+        };
+        el.error = reject;
+        el.async = true;
+        el.defer = true;
+        el.src = src;
+        document.body.appendChild(el);
+    });
+}

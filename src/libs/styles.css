@@ -30,7 +30,7 @@
 }
 .pending-questions__text:after {
     content: '';
-    background: url(./arrow.svg) no-repeat center;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPjU2OTZCRTQyLUI0MzktNEZEMS05MDIyLTkzNTI0RDVDQUZENzwvdGl0bGU+PHBhdGggZD0iTTYgMGwtLjYyNC41MzRMMCA1LjE0MiAxLjI0OCA2LjYgNiAyLjUyNiAxMC43NTIgNi42IDEyIDUuMTQyIDYuNjI0LjUzNHoiIGZpbGw9IiMwMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==) no-repeat center;
     width: 12px;
     height: 7px;
     display: inline-block;
@@ -52,6 +52,7 @@ a.pending-questions__button {
     background-color: #ef7026;
     appearance: none;
     visibility: hidden;
+    text-decoration: none;
 }
 .pending-questions__button:hover {
     text-decoration: none;
@@ -65,7 +66,7 @@ a.pending-questions__button {
 }
 .pending-questions__toggler:before {
     content: '';
-    background: url(./arrow.svg) no-repeat center;
+    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iNyIgdmlld0JveD0iMCAwIDEyIDciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPjU2OTZCRTQyLUI0MzktNEZEMS05MDIyLTkzNTI0RDVDQUZENzwvdGl0bGU+PHBhdGggZD0iTTYgMGwtLjYyNC41MzRMMCA1LjE0MiAxLjI0OCA2LjYgNiAyLjUyNiAxMC43NTIgNi42IDEyIDUuMTQyIDYuNjI0LjUzNHoiIGZpbGw9IiMwMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==) no-repeat center;
     width: 12px;
     height: 7px;
     display: block;
