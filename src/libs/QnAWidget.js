@@ -29,7 +29,7 @@ class QnAWidget {
                 }
                 if (data.total) {
                     return Promise.all([
-                        addScript(this.getApiScriptUrl(data.versionedFilename)),
+                        addScript(this.getApiScriptUrl(data.version)),
                         data
                     ]);
                 }
